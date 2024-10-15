@@ -3,8 +3,7 @@
 Techstack:
 
   Backend:
-    Express
-    Javascript
+    C# ASP.NET
     
   Frontend:
     Vue.js
