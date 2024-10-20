@@ -1,0 +1,32 @@
+Use-Case Specification: Defekt melden
+1. Defekt melden
+1.1 Kurze Beschreibung
+Dieser Use-Case ermöglicht es einem Benutzer, einen Defekt an einem gebuchten Büroplatz zu melden. Wenn der Benutzer an einem Platz einen Defekt feststellt, kann er diesen über die Plattform melden. Dies führt dazu, dass der Platz vorübergehend gesperrt wird, bis der Defekt behoben ist.
+
+1.2 Mockup
+
+1.3 Screenshots
+
+2. Flow of Events
+2.1 Grundlegender Ablauf
+Der Benutzer navigiert zur Detailansicht eines von ihm gebuchten Büroplatzes.
+Der Benutzer entdeckt einen Defekt und klickt auf den Button "Defekt melden".
+Ein Formular öffnet sich, in dem der Benutzer den Defekt beschreiben kann (z.B. kaputte Ausrüstung, fehlende Ausstattung).
+Der Benutzer sendet die Meldung ab.
+Der Büroplatz wird vorübergehend gesperrt, bis der Defekt behoben ist, und der Administrator wird über die Meldung informiert.
+Eine Bestätigung wird dem Benutzer angezeigt, dass der Defekt gemeldet wurde.
+2.2 Alternative Abläufe
+Defekt nicht bestätigbar: Sollte der Defekt nicht bestätigt werden (z.B. technische Probleme bei der Meldung), erhält der Benutzer eine Fehlermeldung und wird gebeten, es erneut zu versuchen.
+3. Besondere Anforderungen
+Die Defektmeldungs-Funktion sollte nur für Benutzer verfügbar sein, die den Büroplatz gebucht haben.
+4. Vorbedingungen
+Der Benutzer ist angemeldet.
+Der Benutzer hat den Büroplatz für den angegebenen Zeitraum gebucht.
+Der Benutzer befindet sich auf der Detailseite des Büroplatzes.
+5. Nachbedingungen
+Der Defekt wird erfolgreich gemeldet und an das System übermittelt.
+Der Büroplatz wird gesperrt, bis der Defekt behoben wurde.
+Der Administrator erhält eine Benachrichtigung über den gemeldeten Defekt.
+5.1 Änderungen speichern / Synchronisation mit dem Server
+Der Server muss sicherstellen, dass der gemeldete Defekt gespeichert wird und der Büroplatz für andere Benutzer nicht mehr buchbar ist, bis die Meldung bearbeitet wurde.
+6. Funktionspunkte
