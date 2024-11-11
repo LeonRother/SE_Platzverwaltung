@@ -1,18 +1,15 @@
-# SE_Platzverwaltung
+# SWE Platzverwaltung
+Repo für die Software Engineering-Vorlesung an der DHBW Karlsruhe. Gruppe 5:
+Büro-Platzverwaltung als WebApp mit REST API Backend und Vue Frontend.
 
 Techstack:
+- Backend: C# ASP.NET 
+- Frontend:
+    - Vue.js
+    - TailwindCSS
+    - TypeScript (optional)
+- Datenbank: sqlite
 
-  Backend:
-    C# ASP.NET
-    
-  Frontend:
-    Vue.js
-    JavaScript
-    Optional (Typescript)
-
-  Datenbank:
-
-
-Struktur:
-Rechteverwaltung für das Bestimmen für welche User welche Plätze reservieren dürfen.
-Grafisch auswählbare Platzwahl.
+<!--
+vim: cc=80 tw=80 nocindent
+-->
