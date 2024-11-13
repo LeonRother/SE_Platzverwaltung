@@ -9,17 +9,26 @@ namespace Backend.Controllers
 	public class BuildingController : ControllerBase
 	{
 		private readonly BuildingService _buildingService;
-        public BuildingController(BuildingService buildingService)
-        {
+		private readonly FloorService _floorService;
+        public BuildingController(BuildingService buildingService, FloorService floorService)
+		{
 			_buildingService = buildingService;
-        }
+			_floorService = floorService;
+		}
 
-        [HttpGet]
+		[HttpGet]
 		public IActionResult Index()
 		{
 			List<Building> buildings = _buildingService.GetAllBuildings();
 
 			return Ok(buildings);
 		}
-    }
+
+		[HttpGet("{id:int}/floors")]
+		public IActionResult GetFloors(int id)
+		{
+			var floors = _floorService.GetFloors(id);
+			return Ok(floors);
+		}
+	}
 }
