@@ -5,6 +5,10 @@ export default {
     "./src/**/*.{vue,js,ts,jsx,tsx}"
   ],
   theme: {
+    fontFamily: {
+      sans: ['Arial'],
+      mono: ['monospace']
+    },
     extend: {},
   },
   plugins: [],
