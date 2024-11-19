@@ -24,16 +24,21 @@ namespace Backend.Controllers
 		{
 			var user = AuthenticateUser(login);
 			if (user == null)
-				return Unauthorized(); // how do you reject "the right way"?
+				return Unauthorized();
 
 			var token = GenerateJwtToken(user);
 			return Ok(new { Token = token });
 		}
 
-		private Employee AuthenticateUser(LoginBody login)
+		private Employee? AuthenticateUser(LoginBody login)
 		{
-			// hash password with bcrypt
-			return _db.Connection.Table<Employee>().Where(e => e.Email == login.Email && e.Password == login.Password).First();
+			var employee = _db.Connection.Table<Employee>().Where(e => e.Email == login.Email).FirstOrDefault();
+			if (employee == null) return null;
+
+			if (BCrypt.Net.BCrypt.Verify(login.Password, employee.Password))
+				return employee;
+			else
+				return null;
 		}
 
 		private string GenerateJwtToken(Employee employee)
@@ -42,10 +47,9 @@ namespace Backend.Controllers
 			var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
 			var claims = new[] {
-				new Claim(ClaimTypes.Email, employee.Email),
-				new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-				new Claim("Organization", employee.OrganizationId.ToString()),
-				new Claim(ClaimTypes.Role, employee.Role)
+				new Claim("email", employee.Email),
+				new Claim("role", employee.Role),
+				new Claim("organization", employee.OrganizationId.ToString()),
 			};
 			var token = new JwtSecurityToken(
 				issuer: _config["Jwt:Issuer"],
