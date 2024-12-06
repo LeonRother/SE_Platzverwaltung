@@ -1,26 +1,37 @@
 <template>
-  <div class="mx-32">
-    <h1 class="text-2xl my-4 font-bold text-center">Demo</h1>
+  <div>
+    <p>Choose a building and floor to show desks.</p>
 
-    <table class="w-full border border-gray-300">
+    <input type="date" class="my-2 px-4 border border-gray-300">
+    <table class="w-full my-2 border border-gray-300">
       <thead class="bg-gray-50">
         <tr>
           <th class="w-1/2">Building
-            <select class="w-16 mx-4 font-normal" @change="updateTable()" v-model="selectedBuilding">
+            <select class="w-16 mx-4 font-normal border" @change="updateFloorSelection()" v-model="selectedBuilding">
               <option value=""></option>
               <option v-for="building in buildings" :key="building.id" :value="building">
                 {{ building.label }}
               </option>
             </select>
-            <p>Floors</p>
           </th>
-          <th class="w-1/2">BuildingID</th>
+          <th class="w-1/2">Floor
+            <select class="w-16 mx-4 font-normal border" @change="updateTable()" v-model="selectedFloor">
+              <option value=""></option>
+              <option v-for="floor in floors" :key="floor.id" :value="building">
+                {{ floor.label }}
+              </option>
+            </select>
+          </th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="floor in floors" :key="floor.id" class="text-center">
-          <td class="border border-gray-300">{{ floor.label }}</td>
-          <td class="border border-gray-300">{{ floor.buildingID }}</td>
+        <tr v-for="desk in desks" :key="desk.id" class="text-center">
+          <td class="border border-gray-300" colspan="2">
+            {{ desk.label }}
+            <button class="m-1 px-4 bg-sky-200 hover:bg-blue-300 active:bg-blue-400 rounded-full">
+              Book
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -36,7 +47,8 @@ export default {
     return {
       buildings: null,
       selectedBuilding: null,
-      floors: null
+      floors: null,
+      selectedFloor: null
     }
   },
   methods: {
@@ -50,11 +62,15 @@ export default {
         console.error('Error fetching building data:', error);
       });
     },
-    updateTable() {
-      axios.get("https://localhost:7000/building/" + this.selectedBuilding.id + "/floors")
+    updateFloorSelection() {
+      axios.get('https://localhost:7000/building/' + this.selectedBuilding.id + '/floors')
       .then(res => {
         this.floors = res.data;
       });
+    },
+    updateTable() {
+      // TODO: update table here
+      // - api call /
     }
   },
   mounted() {

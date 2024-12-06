@@ -1,6 +1,6 @@
 <template>
   <div class="h-dvh grid place-items-center">
-    <div class="w-96 p-4 border bg-gray-50 border-gray-200">
+    <div class="w-96 p-4 border bg-gray-50 border-gray-200 shadow-lg shadow-gray-100">
       <h1 class="pb-2 text-xl text-center font-semibold">Sign in to DESKFLEX</h1>
       <form @submit.prevent="submit" class="flex flex-col">
         <input type="email" placeholder="E-Mail" v-model="email" required
@@ -25,8 +25,8 @@ export default {
   name: 'LoginView',
   data() {
     return {
-      email: null,
-      password: null,
+      email: 'zagola.hagen@trumpf.com',
+      password: 'password',
       loginFailed: null
     }
   },
@@ -41,7 +41,7 @@ export default {
       })
       .then(function (response) {
         sessionStorage.setItem('token', response.data.token);
-        vue.$router.push({ name: 'Selection' });
+        vue.$router.push({ name: 'Home' });
       })
       .catch(() => {
         vue.loginFailed = true;
