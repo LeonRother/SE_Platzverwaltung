@@ -47,6 +47,7 @@ namespace Backend.Controllers
 			var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
 			var claims = new[] {
+				new Claim("firstname", employee.Firstname),
 				new Claim("email", employee.Email),
 				new Claim("role", employee.Role),
 				new Claim("organization", employee.OrganizationId.ToString()),
@@ -55,7 +56,7 @@ namespace Backend.Controllers
 				issuer: _config["Jwt:Issuer"],
 				audience: _config["Jwt:Audience"],
 				claims: claims,
-				expires: DateTime.Now.AddMinutes(1),
+				expires: DateTime.Now.AddHours(1),
 				signingCredentials: credentials);
 
 			return new JwtSecurityTokenHandler().WriteToken(token);
