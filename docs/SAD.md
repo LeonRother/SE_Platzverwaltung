@@ -123,7 +123,7 @@ This document provides a comprehensive architectural overview of the system, usi
 
 ##### Frontend
 
-![](/Users/moritz/Library/Application%20Support/marktext/images/2024-12-01-14-32-36-image.png)
+![docs/Frontend.png](https://github.com/LeonRother/SE_Platzverwaltung/blob/7aa0f07f6f5f9078cc6527c5d350d559ea36ee76/docs/Frontend.png)
 
 • **Components:** Enthält wiederverwendbare Vue.js-Komponenten für die Benutzeroberfläche.
 
@@ -135,7 +135,7 @@ This document provides a comprehensive architectural overview of the system, usi
 
 ##### Backend
 
-![](/Users/moritz/Library/Application%20Support/marktext/images/2024-12-01-14-33-39-image.png)
+![docs/Backend.png](https://github.com/LeonRother/SE_Platzverwaltung/blob/af139d10ca55ab8ef2bdc1313995473a1a020285/docs/Backend.png)
 
 • **Controllers:** Verarbeitet eingehende HTTP-Anfragen und gibt entsprechende Antworten zurück.
 
@@ -153,11 +153,11 @@ This document provides a comprehensive architectural overview of the system, usi
 
 ##### Platz Buchen
 
-![](/Users/moritz/Library/Application%20Support/marktext/images/2024-12-01-14-35-32-image.png)
+![docs/Platz_Buchen.png](https://github.com/LeonRother/SE_Platzverwaltung/blob/a636f8bd3f18764a11aaf361574c43a3db22966e/docs/Platz_Buchen.png)
 
 ##### Plätze verwalten
 
-![](/Users/moritz/Library/Application%20Support/marktext/images/2024-12-01-14-37-19-image.png)
+![docs/Plätze_Verwalten.png](https://github.com/LeonRother/SE_Platzverwaltung/blob/664b9fdab466c7cc1f8381577ce8f228d0958d0f/docs/Pl%C3%A4tze_Verwalten.png)
 
 ### **8.1.Overview**
 
