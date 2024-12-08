@@ -62,13 +62,7 @@ Das System konzentriert sich auf folgende Anwendungsfälle:
 
 - Datenbank: SQLite
 
-- Testing-Tools: Postman (API-Tests), Jest (Unit Tests)
-
-- Projektmanagement: Trello, GitHub
-
 - Versionskontrolle: Git (GitHub Repository)
-
-- Sonstiges: Docker (optional für Deployment)
 
 ---
 
