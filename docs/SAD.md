@@ -153,7 +153,7 @@ This document provides a comprehensive architectural overview of the system, usi
 
 ##### Platz Buchen
 
-![](docs/Platz_Buchen.png)
+![docs/Platz_Buchen.png](https://github.com/LeonRother/SE_Platzverwaltung/blob/a636f8bd3f18764a11aaf361574c43a3db22966e/docs/Platz_Buchen.png)
 
 ##### Plätze verwalten
 
