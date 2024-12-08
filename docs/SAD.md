@@ -123,7 +123,7 @@ This document provides a comprehensive architectural overview of the system, usi
 
 ##### Frontend
 
-![](/Users/moritz/Library/Application%20Support/marktext/images/2024-12-01-14-32-36-image.png)
+![](docs/Frontend.png)
 
 • **Components:** Enthält wiederverwendbare Vue.js-Komponenten für die Benutzeroberfläche.
 
@@ -135,7 +135,7 @@ This document provides a comprehensive architectural overview of the system, usi
 
 ##### Backend
 
-![](/Users/moritz/Library/Application%20Support/marktext/images/2024-12-01-14-33-39-image.png)
+![](docs/Backend.png)
 
 • **Controllers:** Verarbeitet eingehende HTTP-Anfragen und gibt entsprechende Antworten zurück.
 
@@ -153,11 +153,11 @@ This document provides a comprehensive architectural overview of the system, usi
 
 ##### Platz Buchen
 
-![](/Users/moritz/Library/Application%20Support/marktext/images/2024-12-01-14-35-32-image.png)
+![](docs/Platz_Buchen.png)
 
 ##### Plätze verwalten
 
-![](/Users/moritz/Library/Application%20Support/marktext/images/2024-12-01-14-37-19-image.png)
+![](docs/Plätze_Verwalten.png)
 
 ### **8.1.Overview**
 
