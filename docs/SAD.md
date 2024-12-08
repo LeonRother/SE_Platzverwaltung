@@ -123,7 +123,7 @@ This document provides a comprehensive architectural overview of the system, usi
 
 ##### Frontend
 
-![](docs/Frontend.png)
+![]([docs/Frontend.png](https://github.com/LeonRother/SE_Platzverwaltung/blob/7aa0f07f6f5f9078cc6527c5d350d559ea36ee76/docs/Frontend.png))
 
 • **Components:** Enthält wiederverwendbare Vue.js-Komponenten für die Benutzeroberfläche.
 
