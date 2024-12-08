@@ -157,7 +157,7 @@ This document provides a comprehensive architectural overview of the system, usi
 
 ##### Plätze verwalten
 
-![](docs/Plätze_Verwalten.png)
+![docs/Plätze_Verwalten.png](https://github.com/LeonRother/SE_Platzverwaltung/blob/664b9fdab466c7cc1f8381577ce8f228d0958d0f/docs/Pl%C3%A4tze_Verwalten.png)
 
 ### **8.1.Overview**
 
