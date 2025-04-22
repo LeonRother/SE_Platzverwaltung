@@ -11,58 +11,62 @@ namespace Backend.Controllers
 	[Route("[controller]")]
 	public class AuthController : ControllerBase
 	{
-		private readonly DatabaseHandler _db;
-		private readonly IConfiguration _config;
+		private readonly DatabaseHandler _database;
+		private readonly IConfiguration _configuration;
+
 		public AuthController(DatabaseHandler databaseHandler, IConfiguration configuration)
 		{
-			_db = databaseHandler;
-			_config = configuration;
+			_database = databaseHandler;
+			_configuration = configuration;
 		}
 
-		[HttpPost("/login")]
-		public IActionResult Login([FromBody] LoginBody login)
+		[HttpPost("login")]
+		public IActionResult Login([FromBody] LoginRequest loginRequest)
 		{
-			var user = AuthenticateUser(login);
-			if (user == null)
+			var user = GetAuthenticatedUser(loginRequest);
+			if (user is null)
 				return Unauthorized();
 
-			var token = GenerateJwtToken(user);
+			var token = CreateJwtToken(user);
 			return Ok(new { Token = token });
 		}
 
-		private Employee? AuthenticateUser(LoginBody login)
+		private Employee? GetAuthenticatedUser(LoginRequest loginRequest)
 		{
-			var employee = _db.Connection.Table<Employee>().Where(e => e.Email == login.Email).FirstOrDefault();
-			if (employee == null) return null;
+			var user = _database.Connection.Table<Employee>()
+				.FirstOrDefault(e => e.Email == loginRequest.Email);
 
-			if (BCrypt.Net.BCrypt.Verify(login.Password, employee.Password))
-				return employee;
-			else
+			if (user is null || !BCrypt.Net.BCrypt.Verify(loginRequest.Password, user.Password))
 				return null;
+
+			return user;
 		}
 
-		private string GenerateJwtToken(Employee employee)
+		private string CreateJwtToken(Employee user)
 		{
-			var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
-			var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+			var key = Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]);
+			var credentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256);
 
-			var claims = new[] {
-				new Claim("firstname", employee.Firstname),
-				new Claim("email", employee.Email),
-				new Claim("role", employee.Role),
-				new Claim("organization", employee.OrganizationId.ToString()),
+			var claims = new[]
+			{
+				new Claim("firstname", user.Firstname),
+				new Claim("email", user.Email),
+				new Claim("role", user.Role),
+				new Claim("organization", user.OrganizationId.ToString()),
 			};
+
 			var token = new JwtSecurityToken(
-				issuer: _config["Jwt:Issuer"],
-				audience: _config["Jwt:Audience"],
+				issuer: _configuration["Jwt:Issuer"],
+				audience: _configuration["Jwt:Audience"],
 				claims: claims,
-				expires: DateTime.Now.AddHours(1),
-				signingCredentials: credentials);
+				expires: DateTime.UtcNow.AddHours(1),
+				signingCredentials: credentials
+			);
 
 			return new JwtSecurityTokenHandler().WriteToken(token);
 		}
 
-		public class LoginBody
+		public class LoginRequest
 		{
 			public required string Email { get; set; }
 			public required string Password { get; set; }
