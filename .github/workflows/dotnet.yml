@@ -28,4 +28,4 @@ jobs:
       working-directory: backend/Backend
     - name: Test
       run: dotnet test --no-build --verbosity normal
-      working-directory: backend/Backend/SE_Platzverwaltung.Tests
+      working-directory: backend/SE_Platzverwaltung.Tests
