@@ -29,6 +29,7 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
       working-directory: backend/SE_Platzverwaltung.Tests
+      
     - name: Publish
       run: dotnet publish Backend.sln -c Release -o ./publish
       working-directory: backend/Backend
