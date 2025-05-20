@@ -2,32 +2,33 @@
 using Backend.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Backend.Controllers;
-
-[ApiController]
-[Route("[controller]")]
-public class BuildingController : ControllerBase
+namespace Backend.Controllers
 {
-	private readonly BuildingService _buildingService;
-	private readonly FloorService _floorService;
-
-	public BuildingController(BuildingService buildingService, FloorService floorService)
+	[ApiController]
+	[Route("[controller]")]
+	public class BuildingController : ControllerBase
 	{
-		_buildingService = buildingService;
-		_floorService = floorService;
-	}
+		private readonly BuildingService _buildingService;
+		private readonly FloorService _floorService;
+        public BuildingController(BuildingService buildingService, FloorService floorService)
+		{
+			_buildingService = buildingService;
+			_floorService = floorService;
+		}
 
-	[HttpGet]
-	public IActionResult GetAllBuildings()
-	{
-		var buildings = _buildingService.GetAllBuildings();
-		return Ok(buildings);
-	}
+		[HttpGet]
+		public IActionResult Index()
+		{
+			List<Building> buildings = _buildingService.GetAllBuildings();
 
-	[HttpGet("{buildingId:int}/floors")]
-	public IActionResult GetFloorsForBuilding(int buildingId)
-	{
-		var floors = _floorService.GetFloors(buildingId);
-		return Ok(floors);
+			return Ok(buildings);
+		}
+
+		[HttpGet("{id:int}/floors")]
+		public IActionResult GetFloors(int id)
+		{
+			var floors = _floorService.GetFloors(id);
+			return Ok(floors);
+		}
 	}
 }

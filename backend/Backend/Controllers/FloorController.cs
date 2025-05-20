@@ -1,16 +1,16 @@
 ﻿using Backend.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Backend.Controllers;
-
-[ApiController]
-[Route("[controller]")]
-public class FloorController : ControllerBase
+namespace Backend.Controllers
 {
-	private readonly FloorService _floorService;
-
-	public FloorController(FloorService floorService)
+	[ApiController]
+	[Route("[controller]")]
+	public class FloorController : ControllerBase
 	{
-		_floorService = floorService;
+		private readonly FloorService _floorService;
+		public FloorController(FloorService floorService)
+		{
+			_floorService = floorService;
+		}
 	}
 }
