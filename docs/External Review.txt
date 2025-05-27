@@ -1,0 +1,68 @@
+Datum: 26. Mai 2025
+Startzeit: 16:30 Uhr
+Endzeit: 17:30 Uhr
+
+
+Teilnehmer :
+Name			Rolle
+Leon Rother		Entwickler, Review-Teilnehmer
+Moritz Mürle	Entwickler, Review-Teilnehmer
+Philip Klein	Externer Reviewer (anderes Team)
+
+Ziel: Verbesserung der Codequalität und Überprüfung auf Wartbarkeit, klare Verantwortlichkeiten und Best Practices in der Backend-Architektur.
+
+Fokus: Wir haben den BuildingController für die Review ausgewählt, da er zentrale Funktionen unseres Backends abbildet, nämlich:
+
+Zugriff auf Gebäudedaten (BuildingService)
+Zugriff auf zugehörige Etagen (FloorService)
+Diese Logik stellt eine typische Interaktion unserer Backend-Komponenten dar und ist daher besonders geeignet zur Überprüfung auf:
+
+Wartbarkeit
+Klarheit des Codes
+Trennung von Verantwortlichkeiten
+Fehlerbehandlung
+
+Komponenten für die Review
+
+BuildingController.cs
+BuildingService.cs (nur zur Kontextklärung)
+FloorService.cs (nur zur Kontextklärung)
+
+Kriterien für die Review
+
+Komponente	Kriterien
+BuildingController	Codequalität, Lesbarkeit, Fehlerbehandlung, saubere Trennung von Zuständigkeiten, Wartbarkeit, REST-Konformität
+Services (nur Kontext)	Korrekte Verwendung im Controller, lose Kopplung
+
+Review Methodik
+
+Methode: Walkthrough kombiniert mit Code Review
+Die Entwickler haben den Code vorgestellt und Schritt für Schritt erläutert. Anschließend gab es eine gemeinsame Diskussion über Verbesserungsmöglichkeiten.
+
+Ergebnisse des Termins
+
+Festgestellte Stärken:
+
+Klare Strukturierung des Controllers
+Verwendung von Dependency Injection ist korrekt
+REST-konforme Routen (z.B. [HttpGet("{id:int}/floors")])
+Verbesserungsvorschläge / Maßnahmen:
+
+Fehlende Fehlerbehandlung:
+Es wird nicht geprüft, ob ein Gebäude mit der gegebenen ID existiert, bevor die Etagen geladen werden. Vorschlag: Rückgabe von NotFound() wenn ID ungültig.
+Maßnahme: Einfügen von Fehlerbehandlung (Try-Catch oder if-null-check).
+
+Kommentare & Dokumentation:
+Es fehlen XML-Kommentare, insbesondere für Public-APIs.
+Maßnahme: Methoden dokumentieren, vor allem bei öffentlich erreichbaren Endpunkten.
+Namen:
+Der Endpunkt Index() ist untypisch für REST-APIs. GetAll() oder GetBuildings() wäre sprechender.
+Maßnahme: Methoden umbenennen zur besseren Verständlichkeit.
+Validierung:
+Der Controller verlässt sich vollständig auf die Services ohne Validierung der Eingabeparameter.
+Maßnahme: Grundlegende Validierungen hinzufügen, z.B. ID > 0.
+Gelernte Best Practices:
+
+Die Einführung von Schnittstellentests für Controller-Methoden kann helfen, logische Fehler frühzeitig zu entdecken.
+REST-Methodennamen sollten selbsterklärend sein.
+Externe Review-Teilnahme (Philip) hat wertvolle externe Perspektive eingebracht (z.B. zum Thema NotFound()-Handhabung).
