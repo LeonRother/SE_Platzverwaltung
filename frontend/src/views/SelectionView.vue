@@ -17,9 +17,9 @@
           <th class="w-1/2">Floor
             <select class="w-16 mx-4 font-normal border" @change="updateTable()" v-model="selectedFloor">
               <option value=""></option>
-              <option v-for="floor in floors" :key="floor.id" :value="building">
+              <option v-for="floor in floors" :key="floor.id" :value="floor">
                 {{ floor.label }}
-              </option>
+              </option> 
             </select>
           </th>
         </tr>
@@ -48,8 +48,10 @@ export default {
       buildings: null,
       selectedBuilding: null,
       floors: null,
-      selectedFloor: null
+      selectedFloor: null,
+      desks: []
     }
+    
   },
   methods: {
     fetchBuildings() {
@@ -66,12 +68,21 @@ export default {
       axios.get('https://localhost:7000/building/' + this.selectedBuilding.id + '/floors')
       .then(res => {
         this.floors = res.data;
+        
       });
     },
     updateTable() {
       // TODO: update table here
       // - api call /
-    }
+      
+      axios.get('https://localhost:7000/floors/' + this.selectedFloor.id + '/desks')
+        .then(res => {
+          this.desks = res.data;
+        })
+        .catch(err => {
+          console.error("Error fetching desks:", err);
+        });
+        }
   },
   mounted() {
     this.fetchBuildings();

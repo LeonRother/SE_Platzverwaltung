@@ -10,10 +10,12 @@ namespace Backend.Controllers
 	{
 		private readonly BuildingService _buildingService;
 		private readonly FloorService _floorService;
-        public BuildingController(BuildingService buildingService, FloorService floorService)
+		private readonly DeskService _deskService;
+        public BuildingController(BuildingService buildingService, FloorService floorService, DeskService deskService)
 		{
 			_buildingService = buildingService;
 			_floorService = floorService;
+			_deskService = deskService;
 		}
 
 		[HttpGet]
@@ -29,6 +31,13 @@ namespace Backend.Controllers
 		{
 			var floors = _floorService.GetFloors(id);
 			return Ok(floors);
+		}
+
+		[HttpGet("/floors/{floorId:int}/desks")]
+		public IActionResult GetDesksByFloor(int floorId)
+		{
+			var desks = _deskService.GetDesks(floorId);
+			return Ok(desks);
 		}
 	}
 }

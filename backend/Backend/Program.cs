@@ -35,6 +35,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddSingleton<DatabaseHandler>();
 builder.Services.AddSingleton<BuildingService>();
 builder.Services.AddSingleton<FloorService>();
+builder.Services.AddSingleton<DeskService>();
 
 var app = builder.Build();
 
