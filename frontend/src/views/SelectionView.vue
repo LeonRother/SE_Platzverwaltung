@@ -28,7 +28,7 @@
         <tr v-for="desk in desks" :key="desk.id" class="text-center">
           <td class="border border-gray-300" colspan="2">
             {{ desk.label }}
-            <button class="m-1 px-4 bg-sky-200 hover:bg-blue-300 active:bg-blue-400 rounded-full">
+            <button class="m-1 px-4 bg-sky-200 hover:bg-blue-300 active:bg-blue-400 rounded-full" @click="bookDesk(desk.id)">
               Book
             </button>
           </td>
@@ -82,8 +82,34 @@ export default {
         .catch(err => {
           console.error("Error fetching desks:", err);
         });
-        }
+    },
+    bookDesk(deskId){
+      const dateInput = document.querySelector('input[type="date"]');
+      const selectedDate = dateInput?.value;
+
+      if (!selectedDate) {
+      alert("Please select a date first.");
+      return;
+      }
+      axios.post('https://localhost:7000/building/book-desk',{
+        deskId: deskId,
+        date: selectedDate,
+        userId: 1
+      })
+      .then(()=>{
+        alert("Desk booked succesfully");
+      })
+      .catch(err => {
+      if (err.response && err.response.status === 409) {
+        alert("Desk already booked for this date.");
+      } else {
+        alert("Error booking desk.");
+        console.error(err);
+      }
+    })
+    }
   },
+  
   mounted() {
     this.fetchBuildings();
   }

@@ -36,6 +36,7 @@ builder.Services.AddSingleton<DatabaseHandler>();
 builder.Services.AddSingleton<BuildingService>();
 builder.Services.AddSingleton<FloorService>();
 builder.Services.AddSingleton<DeskService>();
+builder.Services.AddSingleton<BookingService>();
 
 var app = builder.Build();
 

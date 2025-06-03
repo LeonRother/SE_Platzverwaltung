@@ -1,16 +1,20 @@
 <template>
   <div>
     <h1 class="text-2xl font-bold">Hello {{ firstname }}!</h1>
-    <p>Your seat for today is [_____] at [_____].</p>
+     <p>
+      Your seat for today is [____] at [____].
+    </p>
   </div>
 </template>
 
 <script>
+
 export default {
   name: 'HomeView',
   data() {
     return {
-      firstname: null
+      firstname: null,
+      booking: null
     }
   },
   methods: {
